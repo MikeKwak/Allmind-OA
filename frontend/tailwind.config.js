@@ -13,21 +13,9 @@ module.exports = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       fontFamily: {
-        martina: [
-          '"Martina Plantijn Regular"',
-          '"Martina Plantijn Regular Placeholder"',
-          'sans-serif'
-        ],
-        'br-sonoma-regular': [
-          '"BR Sonoma Regular"',
-          '"BR Sonoma Regular Placeholder"',
-          'sans-serif'
-        ],
-        'br-sonoma-medium': [
-          '"BR Sonoma Medium"',
-          '"BR Sonoma Medium Placeholder"',
-          'sans-serif'
-        ],
+        martina: ['var(--font-martina-plantijn)', 'sans-serif'],
+        'br-sonoma-regular': ['var(--font-br-sonoma-regular)', 'sans-serif'],
+        'br-sonoma-medium': ['var(--font-br-sonoma-medium)', 'sans-serif'],
       },
       fontWeight: {
         'br-regular': '400',

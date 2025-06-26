@@ -203,6 +203,20 @@ export default function Navbar() {
 
 function MobileMenu({ scrolled }: { scrolled: boolean }) {
   const [open, setOpen] = useState(false);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (open) {
+        setOpen(false);
+      }
+    };
+
+    if (open) {
+      window.addEventListener('scroll', handleScroll);
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
+  }, [open]);
+
   return (
     <>
       <button
@@ -214,85 +228,138 @@ function MobileMenu({ scrolled }: { scrolled: boolean }) {
         {open ? "✕" : "≡"}
       </button>
       {open && (
-        <div className="absolute top-16 right-0 w-2/3 bg-white shadow-lg flex flex-col items-center space-y-6 py-6 z-50">
-          <Link 
-            href="#" 
-            onClick={() => setOpen(false)}
-            className="text-black text-sm leading-[21px] font-normal"
-            style={{ 
-              fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '21px',
-              fontWeight: 400
-            }}
-          >
-            Product
-          </Link>
-          <Link 
-            href="#" 
-            onClick={() => setOpen(false)}
-            className="text-black text-sm leading-[21px] font-normal"
-            style={{ 
-              fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '21px',
-              fontWeight: 400
-            }}
-          >
-            Security
-          </Link>
-          <Link 
-            href="#" 
-            onClick={() => setOpen(false)}
-            className="text-black text-sm leading-[21px] font-normal"
-            style={{ 
-              fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '21px',
-              fontWeight: 400
-            }}
-          >
-            Company
-          </Link>
-          <Link 
-            href="#" 
-            onClick={() => setOpen(false)}
-            className="text-black text-sm leading-[21px] font-normal"
-            style={{ 
-              fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '21px',
-              fontWeight: 400
-            }}
-          >
-            News
-          </Link>
-          <Link 
-            href="#" 
-            onClick={() => setOpen(false)}
-            className="text-black text-sm leading-[21px] font-normal"
-            style={{ 
-              fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '21px',
-              fontWeight: 400
-            }}
-          >
-            Careers
-          </Link>
-          <Link 
-            href="#" 
-            className="text-black text-sm leading-[14px] font-normal"
-            onClick={() => setOpen(false)}
-            style={{ 
-              fontFamily: '"BR Sonoma Medium", "BR Sonoma Medium Placeholder", sans-serif',
-              fontSize: '14px',
-              lineHeight: '14px',
-              fontWeight: 400
-            }}
-          >
-            Log in
-          </Link>
+        <div className="fixed inset-0 min-h-screen w-screen bg-black z-[9999] flex flex-col">
+          {/* Header with logo and close button */}
+          <div className="flex items-center justify-between p-6">
+            <Link href="/" className="flex items-center">
+              <Image
+                src="/images/rogo-logo.png"
+                alt="rogo logo"
+                width={90}
+                height={32}
+                style={{ objectFit: "contain" }}
+                priority
+              />
+            </Link>
+            <button
+              className="text-white text-2xl"
+              onClick={() => setOpen(false)}
+              aria-label="Close menu"
+            >
+              ✕
+            </button>
+          </div>
+
+          {/* Menu items */}
+          <div className="flex flex-col flex-1 px-6 space-y-8 mt-8">
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-gray-700 pb-4"
+            >
+              <span 
+                className="text-white text-lg font-normal"
+                style={{ 
+                  fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
+                }}
+              >
+                Product
+              </span>
+              <span className="text-gray-400 text-sm">01 /</span>
+            </Link>
+            
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-gray-700 pb-4"
+            >
+              <span 
+                className="text-white text-lg font-normal"
+                style={{ 
+                  fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
+                }}
+              >
+                Security
+              </span>
+              <span className="text-gray-400 text-sm">02 /</span>
+            </Link>
+            
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-gray-700 pb-4"
+            >
+              <span 
+                className="text-white text-lg font-normal"
+                style={{ 
+                  fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
+                }}
+              >
+                Company
+              </span>
+              <span className="text-gray-400 text-sm">03 /</span>
+            </Link>
+            
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-gray-700 pb-4"
+            >
+              <span 
+                className="text-white text-lg font-normal"
+                style={{ 
+                  fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
+                }}
+              >
+                News
+              </span>
+              <span className="text-gray-400 text-sm">04 /</span>
+            </Link>
+            
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-between border-b border-gray-700 pb-4"
+            >
+              <span 
+                className="text-white text-lg font-normal"
+                style={{ 
+                  fontFamily: '"BR Sonoma Regular", "BR Sonoma Regular Placeholder", sans-serif',
+                }}
+              >
+                Careers
+              </span>
+              <span className="text-gray-400 text-sm">05 /</span>
+            </Link>
+          </div>
+
+          {/* Bottom buttons */}
+          <div className="flex flex-col space-y-4 p-6 mt-auto">
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="w-full text-center py-3 text-white border border-gray-600 rounded-md hover:border-gray-500 transition-colors"
+              style={{ 
+                fontFamily: '"BR Sonoma Medium", "BR Sonoma Medium Placeholder", sans-serif',
+                fontSize: '16px',
+                fontWeight: 400
+              }}
+            >
+              Log in
+            </Link>
+            <Link 
+              href="#" 
+              onClick={() => setOpen(false)}
+              className="w-full text-center py-3 bg-white text-black rounded-md hover:bg-gray-100 transition-colors"
+              style={{ 
+                fontFamily: '"BR Sonoma Medium", "BR Sonoma Medium Placeholder", sans-serif',
+                fontSize: '16px',
+                fontWeight: 400
+              }}
+            >
+              Book Demo
+            </Link>
+          </div>
         </div>
       )}
     </>

@@ -53,7 +53,6 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  font-preload: true;
 }
 
 @font-face {
@@ -62,7 +61,6 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
-  font-preload: true;
 }
 
 @font-face {
@@ -71,7 +69,6 @@ body {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
-  font-preload: true;
 }
 
 @keyframes marquee {
