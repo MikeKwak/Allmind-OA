@@ -1,0 +1,16 @@
+# Use a standard Node.js image
+FROM node:18-alpine
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+# Using 'npm install' is more flexible for dev than 'npm ci'
+RUN npm install
+
+# The command will be provided by docker-compose.yml
+# Expose the Next.js development port
+EXPOSE 3000 

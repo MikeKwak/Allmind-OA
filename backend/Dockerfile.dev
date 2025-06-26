@@ -1,0 +1,17 @@
+FROM golang:1.24-alpine
+
+WORKDIR /app
+
+# Install git for go mod, and build-base for CGO dependencies if any
+RUN apk add --no-cache git build-base
+
+# Install air for hot-reloading from its new location
+RUN go install github.com/air-verse/air@latest
+
+# Copy go mod files and download dependencies first for caching
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Set the command to run Air for hot-reloading
+# It will pick up the .air.toml config file
+CMD ["air"] 

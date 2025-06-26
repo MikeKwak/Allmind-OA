@@ -1,0 +1,17 @@
+# This file is for building production-ready images for amd64 architecture (e.g., for Google Cloud Run)
+# It names the images with the full GCR path, ready for pushing.
+#
+# Usage:
+# 1. export PROJECT_ID="your-gcp-project-id"
+# 2. docker-compose -f docker-compose.prod.yml build
+
+services:
+  frontend:
+    build: ./frontend
+    platform: linux/amd64
+    image: gcr.io/${PROJECT_ID:-ai-chatbot-landing}/ai-copilot-frontend:latest
+
+  backend:
+    build: ./backend
+    platform: linux/amd64
+    image: gcr.io/${PROJECT_ID:-ai-chatbot-landing}/ai-copilot-backend:latest 
